@@ -1,3 +1,17 @@
+from .commands import add_task
+
+
 def main():
-    print('salom')
-    
+    while True:
+        print("---menu----")
+        print("1. Add Task")
+        print("2. List Tasks")
+        print("3. Update Task")
+        print("4. Delete Task")
+        print("5. Mark Completed")
+        print("6. Exit")
+        
+        choice = input("Select option: ")
+        if choice == "1":
+            add_task()
+        

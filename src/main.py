@@ -1,4 +1,7 @@
-from .commands import add_task
+from .commands import (
+    add_task,
+    show_tasks,
+)
 
 
 def main():
@@ -14,4 +17,6 @@ def main():
         choice = input("Select option: ")
         if choice == "1":
             add_task()
+        elif choice == "2":
+            show_tasks()
         

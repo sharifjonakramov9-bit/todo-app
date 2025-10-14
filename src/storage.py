@@ -36,3 +36,21 @@ def create_task(name: str, description: str, category: str, date: date) -> bool:
     })
 
     save_database(tasks)
+
+
+def get_tasks():
+    tasks = list(map(
+        lambda task: {
+            "id": task["id"],
+            "name": task["name"],
+            "description": task["description"],
+            "category": task["category"],
+            "due_date": datetime.strptime(task["due_date"], "%d/%m/%Y"),
+            "created_date": datetime.strptime(task["created_date"], "%d/%m/%Y, %H:%M:%S"),
+            "status": task["status"]
+        },
+        read_database(),
+    ))
+
+    return tasks
+

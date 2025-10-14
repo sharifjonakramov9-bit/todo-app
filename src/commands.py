@@ -1,5 +1,12 @@
 from datetime import datetime
-from .storage import create_task
+
+from rich.console import Console
+from rich.table import Table
+
+from .storage import (
+    create_task,
+    get_tasks,
+)
 
 
 def add_task():
@@ -15,3 +22,40 @@ def add_task():
 
     create_task(name, description, category, due_date)
     print("✅ Vazifa muvaffaqiyatli qo'shildi!")
+
+
+def show_tasks():
+    tasks = get_tasks()
+
+    console = Console()
+
+    table = Table(title="All Tasks")
+    table.add_column("Number")
+    table.add_column("Name")
+    table.add_column("Category")
+    table.add_column("Due Date")
+
+    for num, task in enumerate(tasks, start=1):
+        du_date = task["due_date"].strftime("%d/%m/%Y")
+        table.add_row(str(num), task["name"], task["category"], du_date)
+    
+    console.print(table)
+
+    num = int(input("Task detail: "))
+    task = tasks[num - 1]
+    
+    status = "❌Incompleted"
+    if task["status"]:
+        status = "✅ Completed"
+    du_date = task["due_date"].strftime("%d/%m/%Y")
+    created_date = task["created_date"].strftime("%d/%m/%Y, %H:%M:%S")
+
+    print(f"Task name: {task['name']}")
+    print(f"Description: {task['description']}")
+    print(f"Category: {task['category']}")
+    print(f"Status: {status}")
+    print(f"Due Date: {du_date}")
+    print(f"Created Date: {created_date}")
+    
+    print()
+    

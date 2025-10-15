@@ -1,6 +1,11 @@
+import sys
+
 from .commands import (
     add_task,
     show_tasks,
+    update_file,
+    delete_tasks,
+    mark_completed
 )
 
 
@@ -19,4 +24,19 @@ def main():
             add_task()
         elif choice == "2":
             show_tasks()
-        
+        elif choice == "3":
+            update_file()
+        elif choice == "4":
+            delete_tasks()
+        elif choice == "5":
+            mark_completed()
+        elif choice == "6":
+            x = input("Do you want to exit?(Yes/No) ").strip().lower()
+            if x == "yes":
+                sys.exit()
+            elif x == "no":
+                continue
+            else:
+                print("You can answer only yes or no! please choose 1-6 around number")
+
+            

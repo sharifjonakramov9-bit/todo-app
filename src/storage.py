@@ -53,4 +53,3 @@ def get_tasks():
     ))
 
     return tasks
-
